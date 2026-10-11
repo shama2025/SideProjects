@@ -8,15 +8,16 @@ from db import fetch_from_table
 app = Flask(__name__)
 CORS(app=app)
 
-@app.route("/api/system-stats",methods=["GET"])
+
+@app.route("/api/system-stats", methods=["GET"])
 def fetch_system_information():
     system_info = fetch_from_table()
     return Response(
-        response=json.dumps(system_info),
-        status=200,
-        mimetype='application/json'
+        response=json.dumps(system_info), status=200, mimetype="application/json"
     )
-threading.Timer(10.0,system).start()
+
+
+threading.Timer(10.0, system).start()
 
 if __name__ == "__main__":
     app.run()
