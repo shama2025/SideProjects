@@ -31,9 +31,7 @@ def write_to_table(stats):
     swap_metrics = json.dumps(stats["swap_metrics"])
     process_metrics = json.dumps(stats["process_metrics"])
     cursor = con.cursor()
-    cursor.execute(
-        "INSERT INTO system_stats(date,cpu_metrics,mac_os_metrics,linux_metrics,swap_metrics,process_metrics) VALUES(?,?,?,?,?,?)",
-        (
+    cursor.execute("UPDATE system_stats SET date = ?, cpu_metrics = ?, mac_os_metrics = ?, linux_metrics = ?, swap_metrics = ?, process_metrics = ?",(
             date,
             cpu_metrics,
             mac_os_metrics,
