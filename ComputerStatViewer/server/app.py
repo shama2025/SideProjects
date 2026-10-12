@@ -16,8 +16,11 @@ def fetch_system_information():
         response=json.dumps(system_info), status=200, mimetype="application/json"
     )
 
+def run_sub_process():
+    system()
+    threading.Timer(15.0, run_sub_process).start()
 
-threading.Timer(10.0, system).start()
+threading.Timer(10.0, run_sub_process).start()
 
 if __name__ == "__main__":
     app.run()
