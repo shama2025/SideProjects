@@ -49,9 +49,17 @@ def fetch_from_table():
     con = create_con()
     cursor = con.cursor()
     res = cursor.execute("""SELECT * FROM system_stats""").fetchmany()
+    stats = res[0]
+    obj = {}
+    obj["date"] = stats[0]
+    obj["cpu_metrics"] = stats[1]
+    obj["mac_os_metrics"] = stats[2]
+    obj["linux_metrics"] = stats[3]
+    obj["swap_metrics"] = stats[4]
+    obj["process_metrics"] = stats[5]
     cursor.close()
     con.close()
-    return res
+    return obj
 
 
 create_table()
